@@ -1,0 +1,226 @@
+/* Base Variables - Futuristic Minimal Deep Tone Inspired */
+:root {
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, sans-serif;
+}
+
+[data-theme="dark"] {
+    --bg-color: #0b0c10;
+    --text-color: #f8f9fa;
+    --text-muted: #8b92a5;
+    --tile-bg: rgba(20, 22, 28, 0.4); /* Glassmorphism base */
+    --tile-border: rgba(255, 255, 255, 0.08);
+    --tile-text: #f0f0f0;
+    --accent-color: #64ffda; /* Deep sleek accent */
+    --accent-glow: rgba(100, 255, 218, 0.15);
+    --tile-hover-overlay: rgba(255, 255, 255, 0.03);
+    --shadow-color: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="light"] {
+    --bg-color: #f0f4f8;
+    --text-color: #111827;
+    --text-muted: #6b7280;
+    --tile-bg: rgba(255, 255, 255, 0.6);
+    --tile-border: rgba(255, 255, 255, 0.5);
+    --tile-text: #111827;
+    --accent-color: #0ea5e9;
+    --accent-glow: rgba(14, 165, 233, 0.15);
+    --tile-hover-overlay: rgba(0, 0, 0, 0.02);
+    --shadow-color: rgba(100, 110, 140, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden; 
+    overflow-y: auto; /* Natural vertical scroll */
+    min-height: 100vh;
+    transition: background-color 0.8s ease, color 0.3s ease;
+    scroll-behavior: smooth;
+}
+
+/* --- Ambient Floating Background --- */
+.ambient-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+#particle-canvas {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+}
+
+.glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.6;
+    mix-blend-mode: screen;
+}
+
+[data-theme="light"] .glow-orb {
+    mix-blend-mode: multiply;
+    opacity: 0.3;
+}
+
+.orb-1 {
+    width: 600px; height: 600px;
+    background: var(--accent-glow);
+    top: -100px; left: -100px;
+    animation: floatOrb 20s infinite alternate ease-in-out;
+}
+
+.orb-2 {
+    width: 400px; height: 400px;
+    background: rgba(138, 43, 226, 0.1); /* Subtle purple/deep space */
+    bottom: -50px; right: 10vw;
+    animation: floatOrb2 25s infinite alternate ease-in-out;
+}
+
+.orb-cursor {
+    width: 300px; height: 300px;
+    background: var(--accent-glow);
+    top: 0; left: 0;
+    transform: translate(-50%, -50%);
+    opacity: 0; /* JS will fade in on mouse move */
+    transition: opacity 0.5s ease;
+    will-change: transform;
+}
+
+@keyframes floatOrb {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(100px, 50px) scale(1.1); }
+}
+
+@keyframes floatOrb2 {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-80px, -80px) scale(1.2); }
+}
+
+/* Hide Scrollbars globally for clean look */
+::-webkit-scrollbar {
+    display: none;
+}
+* {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Typography base */
+h1, h2, h3 {
+    font-weight: 300;
+    letter-spacing: -0.02em;
+}
+
+button {
+    font-family: var(--font-family);
+    cursor: pointer;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 12px; /* Soft rounding */
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(10px);
+}
+
+button:hover {
+    background: var(--accent-color);
+    color: #000;
+    box-shadow: 0 4px 15px var(--accent-glow);
+    transform: translateY(-2px);
+}
+
+input, select, textarea {
+    font-family: var(--font-family);
+    background: rgba(0, 0, 0, 0.2);
+    color: var(--text-color);
+    border: 1px solid var(--tile-border);
+    padding: 12px;
+    border-radius: 12px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px var(--accent-glow);
+}
+
+/* Settings Overlay */
+.icon-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%; /* Only exception for settings config */
+    background: var(--tile-bg);
+    color: var(--text-color);
+    font-size: 24px;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.icon-btn:hover {
+    background: var(--accent-color);
+    color: #000;
+}
+
+#settings-panel {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: var(--tile-bg);
+    padding: 24px;
+    width: 300px;
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid var(--tile-hover-overlay);
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+#settings-panel.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+}
+
+#settings-panel h2 {
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.setting-group {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.setting-group label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+#settings-close {
+    width: 100%;
+    margin-top: 10px;
+    background: var(--tile-hover-overlay);
+    color: var(--text-color);
+}
+#settings-close:hover {
+    background: var(--accent-color);
+    color: #fff;
+}

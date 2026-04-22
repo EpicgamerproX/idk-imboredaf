@@ -1,1 +1,122 @@
 <!DOCTYPE html>
+<html lang="en" data-theme="dark" data-mode="deep-work">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Nexus OS</title>
+    
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/clock.css">
+    <link rel="stylesheet" href="css/notes.css">
+    <link rel="stylesheet" href="css/todo.css">
+    <link rel="stylesheet" href="css/links.css">
+    <link rel="stylesheet" href="css/music.css">
+    <link rel="stylesheet" href="css/neon.css">
+
+    <!-- Fonts (Metro UI style uses Segoe UI or similar modern sans-serif like system fonts) -->
+</head>
+<body>
+    <div class="ambient-bg" aria-hidden="true">
+        <div class="gradient-layer"></div>
+        <div class="glow-field glow-a"></div>
+        <div class="glow-field glow-b"></div>
+        <div class="glow-field glow-c"></div>
+        <canvas id="particle-canvas"></canvas>
+        <div class="interaction-layer" id="interaction-layer"></div>
+        <div class="cursor-aura" id="cursor-glow"></div>
+    </div>
+
+    <button id="settings-toggle" class="icon-btn" aria-label="Toggle Settings">SYS</button>
+    <div id="settings-panel" class="hidden">
+        <h2>Focus Engine</h2>
+        <div class="setting-group">
+            <label>Mode</label>
+            <select id="mode-select">
+                <option value="deep-work">Deep Work</option>
+                <option value="chill">Chill</option>
+                <option value="aggressive">Aggressive</option>
+            </select>
+        </div>
+        <div class="setting-group">
+            <label>Theme</label>
+            <select id="theme-select">
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+            </select>
+        </div>
+        <div class="setting-group">
+            <label>Accent Override</label>
+            <input type="color" id="accent-select" value="#00ffc3">
+        </div>
+        <button id="settings-close">Close</button>
+    </div>
+
+    <main class="system-shell" id="main-container">
+        <header class="system-topbar scroll-animate layer-slow">
+            <div class="brand-tag">NEON NEXUS // PERSONAL ENVIRONMENT</div>
+            <div class="mode-pill" id="mode-label">DEEP WORK</div>
+        </header>
+
+        <section class="hero-section layer-slow">
+            <article class="clock-core scroll-animate" id="widget-clock" data-type="clock" tabindex="0">
+                <p class="clock-kicker">SYSTEM TIME</p>
+                <h1 id="clock-time">00:00</h1>
+                <p id="clock-date">Monday, January 1</p>
+            </article>
+        </section>
+
+        <section class="system-grid" id="widget-container">
+            <div class="column-main layer-fast">
+                <article class="tile tile-todo scroll-animate" id="widget-todo" data-type="todo" tabindex="0">
+                    <div class="tile-content">
+                        <div class="widget-header">
+                            <h2 class="drag-handle">Tasks</h2>
+                            <span class="mobile-hint">Swipe to delete</span>
+                        </div>
+                        <ul id="todo-list"></ul>
+                        <div class="input-wrapper">
+                            <input type="text" id="new-todo" placeholder="Add a task (Press Enter)...">
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tile tile-notes scroll-animate" id="widget-notes" data-type="notes" tabindex="0">
+                    <div class="tile-content">
+                        <div class="widget-header"><h2>Scratchpad</h2></div>
+                        <textarea id="note-area" placeholder="Jot things down... auto-saves."></textarea>
+                    </div>
+                </article>
+            </div>
+
+            <div class="column-side layer-slow">
+                <article class="tile tile-links scroll-animate" id="widget-links" data-type="links" tabindex="0">
+                    <div class="tile-content">
+                        <div class="widget-header"><h2>Launchpad</h2></div>
+                        <ul id="links-list"></ul>
+                        <div class="add-link-form">
+                            <input type="text" id="new-link-name" placeholder="Name">
+                            <input type="url" id="new-link-url" placeholder="https://...">
+                            <button id="add-link-btn">+</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tile tile-music scroll-animate" id="widget-music" data-type="music" tabindex="0">
+                    <div class="tile-content">
+                        <div class="widget-header"><h2>Audio Stream</h2></div>
+                        <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" id="soundcloud-embed"
+                            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/lofi_girl/sets/lofi-beats&color=%2300e5ff&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
+                        </iframe>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- JS Dependencies (Modular) -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

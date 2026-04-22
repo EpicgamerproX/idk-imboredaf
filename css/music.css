@@ -1,0 +1,27 @@
+/* Music Widget Styles */
+.tile-music .tile-content {
+    padding: 0 !important; /* Let iframe take full space */
+}
+
+.tile-music h2 {
+    display: none; /* Hide header, rely on iframe visual */
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    pointer-events: none;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    z-index: 10;
+}
+
+#music-player {
+    width: 100%;
+    height: 100%;
+    background: #000; /* In case of loading */
+}
+
+#music-player iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    pointer-events: auto;
+}
